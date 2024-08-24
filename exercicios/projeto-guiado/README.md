@@ -1,6 +1,4 @@
-# Exercício de Casa 🏠 
-
-### Projeto Guiado: Análise de Dados Básica
+# Projeto Guiado: Análise de Dados Básica
 
 **Objetivo:**
 Este projeto visa guiar as alunas no processo completo de análise de dados, desde a extração e tratamento até a análise e visualização, culminando na persistência dos resultados em um banco de dados SQLite. As alunas aprenderão a usar ferramentas e técnicas básicas de SQL, manipulação de dados com Pandas, e visualização com Matplotlib.
