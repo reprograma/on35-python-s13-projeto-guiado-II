@@ -2,9 +2,9 @@
 
 ```python
 
-
-
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 ```
 
@@ -14,14 +14,42 @@ Inicie o projeto extraindo dados de um arquivo CSV.
 
 ```python
 
-
-
-
+df = pd.read_csv('INMET_MS_ITAQUIRAI_2020.CSV', delimiter=';', skiprows=8, encoding='latin1')
 
 ```
+
 2. Inspeção Inicial:
 
 Revise o conteúdo dos dados extraídos, observando as primeiras e últimas linhas, a forma e a descrição geral dos dados, e os tipos de dados.
+
+```python
+
+df.dtypes
+
+
+```
+
+```python
+
+# primeiras linhas
+
+df.head()
+
+```
+
+```python
+
+# ultimas linhas
+
+df.tail()
+
+
+```
+
+
+3. Identificação e Tratamento de Valores Faltantes:
+
+Identifique a presença de valores nulos e trate-os adequadamente, seja removendo, preenchendo ou substituindo esses valores.
 
 ```python
 
@@ -30,13 +58,6 @@ Revise o conteúdo dos dados extraídos, observando as primeiras e últimas linh
 
 
 ```
-
-
-
-
-3. Identificação e Tratamento de Valores Faltantes:
-
-Identifique a presença de valores nulos e trate-os adequadamente, seja removendo, preenchendo ou substituindo esses valores.
 
 
 # Tratamento de Dados
@@ -56,6 +77,7 @@ Organize e limpe os dados, removendo duplicatas e normalizando quando necessári
 2.Renomeação e Ajuste de Colunas:
 
 Renomeie colunas e ajuste os tipos de dados conforme necessário para garantir a consistência e clareza.
+
 ```python
 
 
@@ -68,6 +90,7 @@ Renomeie colunas e ajuste os tipos de dados conforme necessário para garantir a
 3.Transformações e Criação de Novas Colunas:
 
 Realize transformações relevantes nos dados, como criar novas colunas derivadas de outras existentes.
+
 ```python
 
 
@@ -80,6 +103,7 @@ Realize transformações relevantes nos dados, como criar novas colunas derivada
 1. Geração de Insights Estatísticos:
 
 Utilize técnicas estatísticas para entender os dados, como calcular somas, médias e identificar valores máximos e mínimos.
+
 ```python
 
 
@@ -94,10 +118,19 @@ Utilize técnicas estatísticas para entender os dados, como calcular somas, mé
 
 Agrupe os dados para identificar padrões e tendências, gerando sumarizações que permitam uma análise mais profunda.
 
+```python
+
+
+
+
+
+```
 
 # Visualização de Dados com Matplotlib
+
 1. Criação de Gráficos Básicos:
 Visualize os dados através de gráficos, como histogramas e gráficos de barras, para facilitar a compreensão das análises realizadas.
+
 ```python
 
 
@@ -109,6 +142,7 @@ Visualize os dados através de gráficos, como histogramas e gráficos de barras
 2. Customização de Gráficos:
 
 Personalize os gráficos, adicionando títulos, legendas e ajustando as cores para torná-los mais informativos.
+
 ```python
 
 
@@ -123,7 +157,6 @@ Personalize os gráficos, adicionando títulos, legendas e ajustando as cores pa
 
 1.Criação do Banco de Dados:
 
-
 Estabeleça um banco de dados SQLite para armazenar os resultados das análises.
 
 ```python
@@ -133,8 +166,6 @@ Estabeleça um banco de dados SQLite para armazenar os resultados das análises.
 
 
 ```
-
-
 
 
 2. Salvamento dos Dados Tratados:
