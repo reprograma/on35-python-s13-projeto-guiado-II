@@ -64,7 +64,7 @@ Ao final do projeto, as alunas devem refletir sobre as seguintes questões basea
 6. Que padrões emergiram após a análise dos dados?
 7. Como os dados foram agrupados e quais insights foram gerados?
 8. Quais visualizações forneceram as informações mais valiosas?
-9. Como o uso de SQL contribuiu para a organização dos resultados?
+9.  Como o uso de SQL contribuiu para a organização dos resultados?
 10. De que forma os gráficos ajudaram na compreensão dos dados?
 
 **Apresentação Final:**
