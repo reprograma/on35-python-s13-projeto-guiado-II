@@ -57,7 +57,59 @@ df
 # %%
 df['Data e Hora'] = df['Data'] + ' ' + df['Hora UTC']
 # %%
-df = df[['Data','Hora UTC','Data e Hora','PRECIPITAÇÃO TOTAL, HORÁRIO (mm)','TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)','TEMPERATURA DO PONTO DE ORVALHO (°C)','UMIDADE RELATIVA DO AR, HORARIA (%)','RADIACAO GLOBAL (Kj/m²)','VENTO, DIREÇÃO HORARIA (gr) (° (gr))','VENTO, VELOCIDADE HORARIA (m/s)']]
+df['Data e Hora'] = pd.to_datetime(df['Data e Hora'], format='%d/%m/%Y %H:%M', errors='coerce')
+# %%
+df['Data e Hora BR'] = df['Data e Hora'].dt.tz_localize('UTC').dt.tz_convert('America/Sao_Paulo')
+# %%
+df['Data e Hora BR'] = df['Data e Hora BR'].dt.strftime('%d/%m/%Y %H:%M')
+
+# %%
+df = df[['Data','Hora UTC','Data e Hora','Data e Hora BR','PRECIPITAÇÃO TOTAL, HORÁRIO (mm)','TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)','TEMPERATURA DO PONTO DE ORVALHO (°C)','UMIDADE RELATIVA DO AR, HORARIA (%)','RADIACAO GLOBAL (Kj/m²)','VENTO, DIREÇÃO HORARIA (gr) (° (gr))','VENTO, VELOCIDADE HORARIA (m/s)']]
 # %%
 df
 # %%
+df.dtypes
+# %%
+df.set_index('Data e Hora BR', inplace=True)
+
+df[['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)',
+    'UMIDADE RELATIVA DO AR, HORARIA (%)']].plot(subplots=True)
+
+plt.suptitle('Séries Temporais das Variáveis')
+plt.show()
+# %%
+plt.scatter(df['Data e Hora'] ,df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'],
+            c=df['UMIDADE RELATIVA DO AR, HORARIA (%)'],  
+            cmap='viridis',  
+            alpha=0.7,  
+            edgecolors='w')
+plt.colorbar(label='Umidade Relativa do Ar (%)')
+
+plt.title('Temperatura do Ar x Umidade Relativa do Ar')
+plt.xlabel('Hora e Data')
+plt.ylabel('TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)')
+plt.show()
+# %%
+correlacao = df.corr
+
+correlacao
+# %%
+import sqlite3
+
+conn = sqlite3.connect('clima.db')
+# cursor = conn.cursor()
+
+# persistindo o DataFrame no banco de dados
+df.to_sql('clima', conn, if_exists='replace')
+# %%
+cursor = conn.cursor()
+cursor.execute('SELECT * FROM clima')
+
+col_names = [description[0] for description in cursor.description]
+
+# for row in rows:
+#     print(row)
+
+df_db = pd.DataFrame(cursor.fetchall(), columns=col_names)
+
+df_db
