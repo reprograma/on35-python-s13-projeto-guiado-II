@@ -1,80 +1,82 @@
-<h1 align="center">
-  <img src="assets/reprograma-fundos-claros.png" alt="logo reprograma" width="500">
-</h1>
+# Projeto Guiado: Análise de Dados Básica
 
-# Tema da Aula
+**Objetivo:**
+Este projeto visa guiar as alunas no processo completo de análise de dados, desde a extração e tratamento até a análise e visualização, culminando na persistência dos resultados em um banco de dados SQLite. As alunas aprenderão a usar ferramentas e técnicas básicas de SQL, manipulação de dados com Pandas, e visualização com Matplotlib.
 
-Turma Online X | Semana X | 202X | Professora X
+### Estrutura do Projeto
 
-### Instruções
-Antes de começar, vamos organizar nosso setup.
-* Fork esse repositório 
-* Clone o fork na sua máquina (Para isso basta abrir o seu terminal e digitar `git clone url-do-seu-repositorio-forkado`)
-* Entre na pasta do seu repositório (Para isso basta abrir o seu terminal e digitar `cd nome-do-seu-repositorio-forkado`)
-* [Add outras intrucoes caso necessario]
+#### **Abertura e Carregamento de Dados (ETL - Extract, Transform, Load)**
 
-### Resumo
-O que veremos na aula de hoje?
-* [Tema1](#tema1)
-* [Tema2](#tema2)
-* [Tema3](#tema3)
-
-## Conteúdo
-### Tema1 
-1. [Tópico 1](#topico1)
-2. [Tópico 2](#topico2)
-### Tema2 
-1. [Tópico 3](#topico3)
-   * [Subtópico 1](#subtopico1)
-   * [Subtópico 2](#subtopico2)
+1. **Extração de Dados:** 
+   - Inicie o projeto extraindo dados de um arquivo CSV.
    
-### Tema3
-1. [Tópico 4](#topico4)
+2. **Inspeção Inicial:**
+   - Revise o conteúdo dos dados extraídos, observando as primeiras e últimas linhas, a forma e a descrição geral dos dados, e os tipos de dados.
 
-### Tema1 
+3. **Identificação e Tratamento de Valores Faltantes:**
+   - Identifique a presença de valores nulos e trate-os adequadamente, seja removendo, preenchendo ou substituindo esses valores.
 
-#### Topico1
+#### **Tratamento de Dados**
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam leo nibh, tempus sed rhoncus et, ultrices vitae orci. Donec erat mauris, laoreet in tortor vel, eleifend suscipit nibh. Mauris pharetra dui quis turpis rutrum blandit. Nunc tempor libero tortor, ac commodo erat porttitor ut. Donec vitae orci arcu. Nunc felis mi, maximus a turpis a, mollis pulvinar enim. Vivamus aliquam ante dui, a blandit massa rutrum et. Etiam hendrerit gravida ultrices. Nunc ante massa, dictum eget justo eget, feugiat tincidunt metus.
+1. **Ajustes e Limpeza:**
+   - Organize e limpe os dados, removendo duplicatas e normalizando quando necessário.
 
- #### Topico2
-  - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  - Donec erat mauris, laoreet in tortor vel
-  - Nunc ante massa, dictum eget justo eget, feugiat tincidunt.
+2. **Renomeação e Ajuste de Colunas:**
+   - Renomeie colunas e ajuste os tipos de dados conforme necessário para garantir a consistência e clareza.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam leo nibh, tempus sed rhoncus et, ultrices vitae orci. Donec erat mauris, laoreet in tortor vel, eleifend suscipit nibh. Mauris pharetra dui quis turpis rutrum blandit.
+3. **Transformações e Criação de Novas Colunas:**
+   - Realize transformações relevantes nos dados, como criar novas colunas derivadas de outras existentes.
 
-### Tema2
-#### Topico3
-* [Subtópico 1](#subtopico1)
-* [Subtópico 2](#Subtopico2)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam leo nibh, tempus sed rhoncus et, ultrices vitae orci. Donec erat mauris, laoreet in tortor vel.
+#### **Análise de Dados**
 
-##### Subtopico1
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam leo nibh, tempus sed rhoncus et, ultrices vitae orci. Donec erat mauris, laoreet in tortor vel.
+1. **Geração de Insights Estatísticos:**
+   - Utilize técnicas estatísticas para entender os dados, como calcular somas, médias e identificar valores máximos e mínimos.
 
-##### Subtopico2
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam leo nibh, tempus sed rhoncus et, ultrices vitae orci. Donec erat mauris, laoreet in tortor vel.
+2. **Agrupamento e Sumarização:**
+   - Agrupe os dados para identificar padrões e tendências, gerando sumarizações que permitam uma análise mais profunda.
 
-### Tema3
-#### Topico4
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam leo nibh, tempus sed rhoncus et, ultrices vitae orci. Donec erat mauris, laoreet in tortor vel, eleifend suscipit nibh. Mauris pharetra dui quis turpis rutrum blandit. Nunc tempor libero tortor, ac commodo erat porttitor ut. Donec vitae orci arcu. Nunc felis mi, maximus a turpis a, mollis pulvinar enim. Vivamus aliquam ante dui, a blandit massa rutrum et. Etiam hendrerit gravida ultrices.
+#### **Visualização de Dados com Matplotlib**
 
-***
-### Exercícios 
-* [Exercicio para sala](https://github.com/mflilian/repo-example/tree/main/exercicios/para-sala)
-* [Exercicio para casa](https://github.com/mflilian/repo-example/tree/main/exercicios/para-casa)
+1. **Criação de Gráficos Básicos:**
+   - Visualize os dados através de gráficos, como histogramas e gráficos de barras, para facilitar a compreensão das análises realizadas.
 
-### Material da aula 
+2. **Customização de Gráficos:**
+   - Personalize os gráficos, adicionando títulos, legendas e ajustando as cores para torná-los mais informativos.
 
-### Links Úteis
-- [Lorem Ipsum](https://www.lipsum.com/feed/html)
-- [Lorem Ipsum](https://www.lipsum.com/feed/html)
-- [Lorem Ipsum](https://www.lipsum.com/feed/html)
-- [Lorem Ipsum](https://www.lipsum.com/feed/html)
+#### **Persistência dos Resultados no SQLite**
 
+1. **Criação do Banco de Dados:**
+   - Estabeleça um banco de dados SQLite para armazenar os resultados das análises.
 
-<p align="center">
-Desenvolvido com :purple_heart:  
-</p>
+2. **Salvamento dos Dados Tratados:**
+   - Salve os dados tratados e os resultados das análises em tabelas dentro do banco de dados.
 
+#### **Finalização do Projeto**
+
+**Perguntas para Reflexão:**
+Ao final do projeto, as alunas devem refletir sobre as seguintes questões baseadas nos dados analisados:
+
+1. Qual foi a média de valores de uma coluna específica?
+2. Qual o total de registros após a limpeza dos dados?
+3. Quais foram os valores máximos e mínimos identificados?
+4. Quantos registros tinham valores nulos antes do tratamento?
+5. Qual foi o impacto da normalização de uma coluna específica?
+6. Que padrões emergiram após a análise dos dados?
+7. Como os dados foram agrupados e quais insights foram gerados?
+8. Quais visualizações forneceram as informações mais valiosas?
+9. Como o uso de SQL contribuiu para a organização dos resultados?
+10. De que forma os gráficos ajudaram na compreensão dos dados?
+
+**Apresentação Final:**
+As alunas deverão criar uma apresentação final que resuma o projeto, abordando as etapas de tratamento e análise de dados, as decisões tomadas ao longo do processo, e as conclusões obtidas. A apresentação deve incluir exemplos dos gráficos e discussões sobre os insights gerados durante o projeto.
+---
+
+Terminou o exercício? Dá uma olhada nessa checklist e confere se tá tudo certinho, combinado?!
+
+- [ ] Fiz o fork do repositório.
+- [ ] Clonei o fork na minha máquina (`git clone url-do-meu-fork`).
+- [ ] Resolvi o exercício.
+- [ ] Adicionei as mudanças. (`git add .` para adicionar todos os arquivos, ou `git add nome_do_arquivo` para adicionar um arquivo específico)
+- [ ] Commitei a cada mudança significativa ou na finalização do exercício (`git commit -m "Mensagem do commit"`)
+- [ ] Pushei os commits na minha branch (`git push origin nome-da-branch`)
+- [ ] Criei um Pull Request seguindo as orientaçoes que estao nesse [documento](https://github.com/mflilian/repo-example/blob/main/exercicios/para-casa/instrucoes-pull-request.md).
