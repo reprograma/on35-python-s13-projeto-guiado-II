@@ -26,7 +26,7 @@ Revise o conteúdo dos dados extraídos, observando as primeiras e últimas linh
 
 df.dtypes
 
-
+df.shape
 ```
 
 ```python
@@ -53,12 +53,15 @@ Identifique a presença de valores nulos e trate-os adequadamente, seja removend
 
 ```python
 
-
-
-
+df.isnull()
 
 ```
 
+
+```python
+df_substituido = df.replace(0, np.nan)
+
+```
 
 # Tratamento de Dados
 1. Ajustes e Limpeza:
@@ -67,9 +70,7 @@ Organize e limpe os dados, removendo duplicatas e normalizando quando necessári
 
 ```python
 
-
-
-
+df_sem_duplicatas = df.drop_duplicates()
 
 ```
 
@@ -106,9 +107,7 @@ Utilize técnicas estatísticas para entender os dados, como calcular somas, mé
 
 ```python
 
-
-
-
+df.describe()
 
 ```
 
@@ -121,7 +120,10 @@ Agrupe os dados para identificar padrões e tendências, gerando sumarizações 
 ```python
 
 
+```
 
+
+```python
 
 
 ```
@@ -134,7 +136,9 @@ Visualize os dados através de gráficos, como histogramas e gráficos de barras
 ```python
 
 
+```
 
+```python
 
 
 ```
@@ -146,12 +150,12 @@ Personalize os gráficos, adicionando títulos, legendas e ajustando as cores pa
 ```python
 
 
+```
 
+```python
 
 
 ```
-
-
 
 # Persistência dos Resultados no SQLite
 
@@ -162,7 +166,10 @@ Estabeleça um banco de dados SQLite para armazenar os resultados das análises.
 ```python
 
 
+```
 
+
+```python
 
 
 ```
@@ -175,11 +182,13 @@ Salve os dados tratados e os resultados das análises em tabelas dentro do banco
 ```python
 
 
+```
 
+
+```python
 
 
 ```
-
 
 
 # Finalização do Projeto
