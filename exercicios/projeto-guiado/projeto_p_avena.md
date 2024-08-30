@@ -47,6 +47,14 @@ df.tail()
 ```
 
 
+```python
+
+df = df[['Data','Hora UTC','PRECIPITAÇÃO TOTAL, HORÁRIO (mm)', 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)','TEMPERATURA DO PONTO DE ORVALHO (°C)','UMIDADE RELATIVA DO AR, HORARIA (%)', 'RADIACAO GLOBAL (Kj/m²)', 'VENTO, DIREÇÃO HORARIA (gr) (° (gr))' ,'VENTO, VELOCIDADE HORARIA (m/s)']]
+
+```
+
+
+
 3. Identificação e Tratamento de Valores Faltantes:
 
 Identifique a presença de valores nulos e trate-os adequadamente, seja removendo, preenchendo ou substituindo esses valores.
@@ -59,9 +67,19 @@ df.isnull()
 
 
 ```python
-df_substituido = df.replace(0, np.nan)
+# Remove linhas com qualquer valor nulo
+
+df_sem_nulos = df.dropna()
+
+# Remove colunas que contenham valores nulos
+
+df_sem_nulos_colunas = df.dropna(axis=1)
 
 ```
+
+
+
+
 
 # Tratamento de Dados
 1. Ajustes e Limpeza:
@@ -74,6 +92,17 @@ df_sem_duplicatas = df.drop_duplicates()
 
 ```
 
+```python
+
+df.head()
+
+```
+
+```python
+df_analise = df[['Data', 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)']]
+```
+
+
 
 2.Renomeação e Ajuste de Colunas:
 
@@ -81,12 +110,11 @@ Renomeie colunas e ajuste os tipos de dados conforme necessário para garantir a
 
 ```python
 
-
-
-
-
 ```
 
+```python
+
+```
 
 3.Transformações e Criação de Novas Colunas:
 
@@ -119,6 +147,8 @@ Agrupe os dados para identificar padrões e tendências, gerando sumarizações 
 
 ```python
 
+#agrupado = df_vendas.groupby('Produto').mean()
+#print(agrupado)
 
 ```
 
@@ -165,12 +195,19 @@ Estabeleça um banco de dados SQLite para armazenar os resultados das análises.
 
 ```python
 
+import sqlite3
+
+conn = sqlite3.connect('clima.db')
+
+cursor = conn.cursor()
 
 ```
 
 
 ```python
+# persistindo o DataFrame no banco de dados
 
+df.to_sql('clima', conn, if_exists='replace')
 
 ```
 
@@ -180,13 +217,18 @@ Estabeleça um banco de dados SQLite para armazenar os resultados das análises.
 Salve os dados tratados e os resultados das análises em tabelas dentro do banco de dados.
 
 ```python
+cursor = conn.cursor()
+cursor.execute('SELECT * FROM clima')
 
+col_names = [description[0] for description in cursor.description]
 
 ```
 
 
 ```python
+df_db = pd.DataFrame(cursor.fetchall(), columns=col_names)
 
+df_db
 
 ```
 
