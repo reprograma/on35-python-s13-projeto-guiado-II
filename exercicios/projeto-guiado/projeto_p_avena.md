@@ -65,7 +65,6 @@ df.isnull()
 
 ```
 
-
 ```python
 # Remove linhas com qualquer valor nulo
 
@@ -76,9 +75,6 @@ df_sem_nulos = df.dropna()
 df_sem_nulos_colunas = df.dropna(axis=1)
 
 ```
-
-
-
 
 
 # Tratamento de Dados
@@ -265,12 +261,106 @@ df_db
 Perguntas para Reflexão: Ao final do projeto, as alunas devem refletir sobre as seguintes questões baseadas nos dados analisados:
 
 Qual foi a média de valores de uma coluna específica?
+
+```Python
+# Média da coluna de precipitação total
+media_precipitacao = df['precipitacao_total_mm'].mean()
+print(f"Média de Precipitação: {media_precipitacao:.2f} mm")
+```
+
 Qual o total de registros após a limpeza dos dados?
+
+```Python
+# Número de registros após a limpeza de nulos e duplicados
+total_registros_limpos = df_sem_duplicatas.shape[0]
+print(f"Total de registros após a limpeza: {total_registros_limpos}")
+```
+
 Quais foram os valores máximos e mínimos identificados?
+
+```python
+# Valores máximos e mínimos para a temperatura do ar
+temp_max = df['temp_ar_bulbo_seco_c'].max()
+temp_min = df['temp_ar_bulbo_seco_c'].min()
+print(f"Temperatura máxima: {temp_max} °C, Temperatura mínima: {temp_min} °C")
+
+
+```
+
 Quantos registros tinham valores nulos antes do tratamento?
+
+
+```python
+
+# Contagem de valores nulos por coluna
+valores_nulos = df.isnull().sum()
+print(f"Valores nulos por coluna:\n{valores_nulos}")
+
+```
+
 Qual foi o impacto da normalização de uma coluna específica?
+
+```python
+# Normalização da radiação global para MJ/m²
+df['radiacao_global_normalizada'] = df['radiacao_global_kjm2'] / df['radiacao_global_kjm2'].max()
+
+print(f"Radiação global normalizada (primeiras linhas):\n{df[['radiacao_global_kjm2', 'radiacao_global_normalizada']].head()}")
+
+
+```
 Que padrões emergiram após a análise dos dados?
+
+```python
+# Agrupamento por mês para identificar padrões de precipitação
+padrao_precipitacao = df.groupby('mes')['precipitacao_total_mm'].mean()
+print(f"Média de precipitação por mês:\n{padrao_precipitacao}")
+
+
+```
 Como os dados foram agrupados e quais insights foram gerados?
+
+```python
+
+# Agrupando dados por mês e calculando a média da temperatura do ar
+agrupamento_mes = df.groupby('mes')['temp_ar_bulbo_seco_c'].mean()
+print(f"Média de temperatura por mês:\n{agrupamento_mes}")
+
+```
 Quais visualizações forneceram as informações mais valiosas?
+
+```python
+# Gráfico de barras da precipitação total por mês
+df.groupby('mes')['precipitacao_total_mm'].sum().plot(kind='bar', color='blue')
+plt.title('Precipitação Total por Mês')
+plt.xlabel('Mês')
+plt.ylabel('Precipitação Total (mm)')
+plt.show()
+
+
+```
 Como o uso de SQL contribuiu para a organização dos resultados?
+
+```python
+# Consulta SQL para verificar os dados armazenados no banco de dados
+cursor.execute('SELECT COUNT(*) FROM clima')
+total_registros_db = cursor.fetchone()[0]
+print(f"Total de registros no banco de dados: {total_registros_db}")
+
+
+```
 De que forma os gráficos ajudaram na compreensão dos dados?
+
+```python
+# Gráfico de linha para visualizar a variação da temperatura ao longo do tempo
+plt.plot(df['data'], df['temp_ar_bulbo_seco_c'], color='orange', label='Temperatura do Ar (°C)')
+plt.title('Variação da Temperatura ao Longo do Tempo')
+plt.xlabel('Data')
+plt.ylabel('Temperatura (°C)')
+plt.legend()
+plt.grid(True)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+```
