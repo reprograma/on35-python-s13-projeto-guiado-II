@@ -109,10 +109,34 @@ df_analise = df[['Data', 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)']]
 Renomeie colunas e ajuste os tipos de dados conforme necessário para garantir a consistência e clareza.
 
 ```python
+# Renomeando colunas para facilitar o entendimento
+df.rename(columns={
+    'Data': 'data',
+    'Hora UTC': 'hora_utc',
+    'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)': 'precipitacao_mm',
+    'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)': 'temp_bulbo_seco_c',
+    'TEMPERATURA DO PONTO DE ORVALHO (°C)': 'temp_orvalho_c',
+    'UMIDADE RELATIVA DO AR, HORARIA (%)': 'umidade_relativa',
+    'RADIACAO GLOBAL (Kj/m²)': 'radiacao_global_kjm2',
+    'VENTO, DIREÇÃO HORARIA (gr) (° (gr))': 'vento_direcao_gr',
+    'VENTO, VELOCIDADE HORARIA (m/s)': 'vento_velocidade_ms'
+}, inplace=True)
 
 ```
 
 ```python
+# Ajustando o tipo de dados para as colunas
+df['data'] = pd.to_datetime(df['data'], format='%Y-%m-%d')
+df['precipitacao_mm'] = df['precipitacao_mm'].astype(float)
+df['temp_bulbo_seco_c'] = df['temp_bulbo_seco_c'].astype(float)
+df['temp_orvalho_c'] = df['temp_orvalho_c'].astype(float)
+df['umidade_relativa'] = df['umidade_relativa'].astype(float)
+df['radiacao_global_kjm2'] = df['radiacao_global_kjm2'].astype(float)
+df['vento_direcao_gr'] = df['vento_direcao_gr'].astype(float)
+df['vento_velocidade_ms'] = df['vento_velocidade_ms'].astype(float)
+
+# Verificando as mudanças
+df.dtypes
 
 ```
 
@@ -122,9 +146,11 @@ Realize transformações relevantes nos dados, como criar novas colunas derivada
 
 ```python
 
+# Criando novas colunas derivadas de outras existentes, por exemplo, conversão de radiação global de Kj/m² para MJ/m²
+df['radiacao_global_mjm2'] = df['radiacao_global_kjm2'] / 1000
 
-
-
+# Criando uma coluna de mês para análise sazonal
+df['mes'] = df['data'].dt.month
 
 ```
 
@@ -153,11 +179,6 @@ Agrupe os dados para identificar padrões e tendências, gerando sumarizações 
 ```
 
 
-```python
-
-
-```
-
 # Visualização de Dados com Matplotlib
 
 1. Criação de Gráficos Básicos:
@@ -165,25 +186,31 @@ Visualize os dados através de gráficos, como histogramas e gráficos de barras
 
 ```python
 
+# Criando um gráfico de barras para visualizar a precipitação total por mês
+df.groupby('mes')['precipitacao_total_mm'].sum().plot(kind='bar', color='blue')
+plt.title('Precipitação Total por Mês')
+plt.xlabel('Mês')
+plt.ylabel('Precipitação Total (mm)')
+plt.show()
 
 ```
 
-```python
-
-
-```
 
 2. Customização de Gráficos:
 
 Personalize os gráficos, adicionando títulos, legendas e ajustando as cores para torná-los mais informativos.
 
 ```python
-
-
-```
-
-```python
-
+# Personalizando um gráfico de linha para a temperatura do ar ao longo do tempo
+plt.plot(df['data'], df['temp_ar_bulbo_seco_c'], color='orange', label='Temperatura do Ar (°C)')
+plt.title('Variação da Temperatura ao Longo do Tempo')
+plt.xlabel('Data')
+plt.ylabel('Temperatura (°C)')
+plt.legend()
+plt.grid(True)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
 
 ```
 
